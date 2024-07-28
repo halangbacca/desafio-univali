@@ -1,0 +1,121 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="card">
+    <mat-card-content>
+      <mat-card-title> Cadastro de produtos </mat-card-title>
+      <div fxLayout="column">
+        <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Nome do item</mat-label>
+            <input matInput formControlName="nome" maxlength="50" />
+            <mat-error *ngIf="itemForm.get('nome')?.invalid">{{
+              nomeErrorMessage
+            }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Unidade de medida</mat-label>
+            <mat-select
+              formControlName="unidade"
+              required
+              (selectionChange)="onUnidadeChange()"
+            >
+              <mat-option value="Litro">Litro</mat-option>
+              <mat-option value="Quilograma">Quilograma</mat-option>
+              <mat-option value="Unidade">Unidade</mat-option>
+            </mat-select>
+            <mat-error *ngIf="itemForm.controls['unidade'].invalid"
+              >Unidade de medida é obrigatória.</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Quantidade</mat-label>
+            <input
+              matInput
+              formControlName="quantidade"
+              [type]="quantityInputType"
+            />
+            <span matTextSuffix>{{ quantitySuffix }}</span>
+            <mat-error *ngIf="itemForm.controls['quantidade'].invalid"
+              >Quantidade inválida.</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field class="full-width" appearance="fill">
+            <span matTextPrefix>R$&nbsp;</span>
+            <mat-label>Preço</mat-label>
+            <input matInput formControlName="preco" mask="separator.2" />
+            <mat-error *ngIf="itemForm.controls['preco'].invalid">
+              Preço é obrigatório e deve ser um valor monetário válido.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-checkbox formControlName="perecivel"
+            >Produto perecível</mat-checkbox
+          >
+
+          <mat-form-field
+            class="full-width"
+            appearance="fill"
+            *ngIf="itemForm.controls['perecivel'].value"
+          >
+            <mat-label>Data de validade</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="dataValidade"
+            />
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error
+              *ngIf="itemForm.get('dataValidade')?.hasError('required')"
+            >
+              Data de validade é obrigatória.
+            </mat-error>
+            <mat-error
+              *ngIf="itemForm.get('dataValidade')?.hasError('expired')"
+            >
+              O produto se encontra vencido.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Data de fabricação</mat-label>
+            <input
+              matInput
+              [matDatepicker]="fabricacaoPicker"
+              formControlName="dataFabricacao"
+              required
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="fabricacaoPicker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #fabricacaoPicker></mat-datepicker>
+            <mat-error *ngIf="itemForm.controls['dataFabricacao'].invalid">{{
+              fabricacaoErrorMessage
+            }}</mat-error>
+          </mat-form-field>
+
+          <div class="button-group">
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="!isFormValidExceptExpiry()"
+            >
+              Salvar
+            </button>
+            <button
+              mat-raised-button
+              color="warn"
+              type="button"
+              (click)="onCancel()"
+            >
+              Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

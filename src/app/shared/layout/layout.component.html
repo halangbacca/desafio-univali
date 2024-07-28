@@ -1,0 +1,62 @@
+<div class="navbar-container" [class.example-is-mobile]="mobileQuery.matches">
+  <!-- Top navbar -->
+  <mat-toolbar class="navbar" color="primary">
+    <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <a class="navbar-brand" [routerLink]="['/item']" matTooltip="Home">
+      <h1>Desafio UNIVALI - Halan Germano Bacca</h1>
+    </a>
+
+    <span class="navbar-spacer"></span>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="navbar-sidenav-container">
+    <!-- Side nav -->
+    <mat-sidenav
+      #snav
+      [opened]="!mobileQuery.matches"
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56"
+      class="sidenav"
+    >
+      <mat-nav-list>
+        <a mat-list-item [routerLink]="['/item']" routerLinkActive="active">
+          <p mat-line>
+            <mat-icon mat-list-icon> person_add </mat-icon>
+            Cadastrar item
+          </p>
+        </a>
+
+        <a
+          mat-list-item
+          [routerLink]="['/item/listar']"
+          routerLinkActive="active"
+        >
+          <p mat-line>
+            <mat-icon mat-list-icon> person_search </mat-icon>
+            Listar item
+          </p>
+        </a>
+
+        <mat-divider></mat-divider>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <!-- Main content -->
+    <mat-sidenav-content class="sidenav-content">
+      <div class="progress-bar-container">
+        <mat-progress-bar
+          color="accent"
+          mode="indeterminate"
+          *ngIf="loadingService.visibility | async"
+        >
+        </mat-progress-bar>
+      </div>
+
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

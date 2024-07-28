@@ -1,0 +1,97 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="card">
+    <mat-card-content>
+      <mat-card-title> Listagem de produtos </mat-card-title>
+      <div fxLayout="column">
+        <button mat-raised-button color="primary" (click)="onAdd()">
+          Adicionar Novo Item
+        </button>
+
+        <table mat-table [dataSource]="items" class="mat-elevation-z8">
+          <ng-container matColumnDef="nome">
+            <th mat-header-cell *matHeaderCellDef>Nome</th>
+            <td mat-cell *matCellDef="let item">{{ item.nome }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="unidade">
+            <th mat-header-cell *matHeaderCellDef>Unidade de Medida</th>
+            <td mat-cell *matCellDef="let item">{{ item.unidade }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="quantidade">
+            <th mat-header-cell *matHeaderCellDef>Quantidade</th>
+            <td mat-cell *matCellDef="let item">{{ item.quantidade }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="preco">
+            <th mat-header-cell *matHeaderCellDef>Preço</th>
+            <td mat-cell *matCellDef="let item">{{ item.preco }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="perecivel">
+            <th mat-header-cell *matHeaderCellDef>Perecível</th>
+            <td mat-cell *matCellDef="let item">
+              {{ item.perecivel ? "Sim" : "Não" }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="dataValidade">
+            <th mat-header-cell *matHeaderCellDef>Data de Validade</th>
+            <td mat-cell *matCellDef="let item">
+              {{ item.dataValidade | date : "dd/MM/yyyy" }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="dataFabricacao">
+            <th mat-header-cell *matHeaderCellDef>Data de Fabricação</th>
+            <td mat-cell *matCellDef="let item">
+              {{ item.dataFabricacao | date : "dd/MM/yyyy" }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Ações</th>
+            <td mat-cell *matCellDef="let item">
+              <button mat-button color="primary" (click)="onEdit(item.id)">
+                Editar
+              </button>
+              <button mat-button color="warn" (click)="onDelete(item.id)">
+                Deletar
+              </button>
+            </td>
+          </ng-container>
+
+          <tr
+            mat-header-row
+            *matHeaderRowDef="[
+              'nome',
+              'unidade',
+              'quantidade',
+              'preco',
+              'perecivel',
+              'dataValidade',
+              'dataFabricacao',
+              'actions'
+            ]"
+          ></tr>
+          <tr
+            mat-row
+            *matRowDef="
+              let row;
+              columns: [
+                'nome',
+                'unidade',
+                'quantidade',
+                'preco',
+                'perecivel',
+                'dataValidade',
+                'dataFabricacao',
+                'actions'
+              ]
+            "
+          ></tr>
+        </table>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
