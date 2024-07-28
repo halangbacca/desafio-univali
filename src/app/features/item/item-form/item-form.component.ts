@@ -92,6 +92,9 @@ export class ItemFormComponent implements OnInit {
   validateQuantidade() {
     return (control: any) => {
       const unidade = this.itemForm ? this.itemForm.get('unidade')!.value : '';
+      if (control.value === '') {
+        return null;
+      }
       if (unidade === 'Litro' || unidade === 'Quilograma') {
         const regex = /^\d+(\.\d{1,3})?$/;
         return regex.test(control.value) ? null : { invalidQuantity: true };
