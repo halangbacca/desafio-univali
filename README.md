@@ -1,8 +1,24 @@
 # Desafio UNIVALI - Programador Júnior
 
-<img src=".../../src/assets/tela-inicial.png" alt="tela-inicial">
+<img src=".../../src/assets/tela_cadastro.png" alt="tela-cadastro">
 
-> Tela Inicial do Sistema.
+> Tela de cadastro de item.
+
+<img src=".../../src/assets/listagem_vazia.png" alt="tela-listagem-vazia">
+
+> Mensagem de ausência de itens cadastrados.
+
+<img src=".../../src/assets/tela_listagem.png" alt="tela-listagem">
+
+> Tela de listagem de itens.
+
+<img src=".../../src/assets/tela_edicao.png" alt="tela-edicao">
+
+> Tela de edição de item.
+
+<img src=".../../src/assets/confirmacao_delecao.png" alt="confirmacao-delecao">
+
+> Modal de confirmação de deleção de registro.
 
 ### Descrição do Projeto
 
@@ -29,6 +45,7 @@ Os dados são persistidos no formato JSON, fazendo uso da LocalStorage, adiciona
 \* Enumeração contendo os seguintes valores: Litro, Quilograma ou Unidade.
 
 \*\* Regra da unidade de medida:
+
 - Campos com unidade de medida em Litro devem permitir somente números, com até 3 casas decimais e apresentar a abreviatura "lt" ao final do campo (addon);
 - Campos com unidade de medida em Quilograma devem permitir somente números, com até 3 casas decimais e apresentar a abreviatura "kg" ao final do campo (addon);
 - Campos com unidade de medida em Unidade devem permitir somente números inteiros e apresentar a abreviatura "un" ao final do campo (addon);
@@ -43,7 +60,6 @@ O formulário deve possuir dois botões, um para salvar e outro para cancelar. A
 - Ao clicar em excluir o usuário deverá ser questionado se realmente deseja excluir o item em questão (caso sim, o item deverá ser removido e exibida uma notificação de sucesso ou erro).
 - Ao clicar em editar, o usuário deverá ser redirecionado para o formulário, carregado com os dados do item em questão.
 - O botão de adicionar apenas redirecionará para a página do formulário.
-
 
 ## 💻 Pré-requisitos
 
