@@ -72,6 +72,10 @@
               [matDatepicker]="picker"
               formControlName="dataValidade"
             />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
             <mat-error
               *ngIf="itemForm.get('dataValidade')?.hasError('required')"
